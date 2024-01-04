@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+
+
+    <button id="changeTheme">换肤</button>
+</body>
+<script>
+    document.getElementById('changeTheme').addEventListener('click', function () {
+        const body = document.body;
+        console.log(body, 'cc')
+        if (body.classList.contains('contentBg2')) {
+            body.classList.remove('contentBg2')
+            body.classList.add('contentBg1')
+        } else {
+            body.classList.add('contentBg2')
+            body.classList.remove('contentBg1')
+        }
+    })
+</script>
+
+</html>

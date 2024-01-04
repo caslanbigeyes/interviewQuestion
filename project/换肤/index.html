@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body.light {
+        background-color: #ffffff;
+    }
+
+    body.dark {
+        background-color: #000000;
+
+    }
+</style>
+
+<body>
+    <button id="changeTheme">切换主题</button>
+</body>
+<script>
+    document.getElementById('changeTheme').addEventListener('click', function () {
+        const body = document.body;
+        console.log(body, 'cc')
+        if (body.classList.contains('light')) {
+            body.classList.remove('light')
+            body.classList.add('dark')
+        } else {
+            body.classList.add('light')
+            body.classList.remove('dark')
+        }
+    })
+</script>
+
+</html>

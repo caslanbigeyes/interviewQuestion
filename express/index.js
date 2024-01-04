@@ -6,7 +6,7 @@ const app = express()
 app.use(cors())
 app.use(express.urlencoded({ extended: false }))
 
-app.post('/tracker', (req, res) => {
+app.post('/https://jsonplaceholder.typicode.com/todos/:', (req, res) => {
   console.log(req.body);
   res.send(200)
 })

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 并发请求函数 控制一次只请求三个接口
+
+
+        const concurrencyRequest = (urls, maxNum) => {
+            return new Promise((resolve) => {
+                if (urls.length === 0) {
+                    resolve([])
+                    return;
+                }
+                let result = [];
+                let index = 0; // 下一个请求的下标
+                let count = 0; // 记录是否
+
+                async function request() {
+                    if (index === urls.length) return;
+                    const i = index;
+                    const url = urls[index];
+                    index++;
+                    console.log(url, 'url');
+                    try {
+                        const res = await fetch(url);
+                    } catch (err) {
+                        result[i] = err;
+                    } finally {
+                        count++;
+                        // 判断所有请求是否都完成
+                        if (count === urls.length) {
+                            resolve(result);
+                        }
+                        request()
+                    }
+                }
+
+                const times = Math.min(maxNum, urls.length);
+                for (let i = 0; i < times; i++) {
+                    request();
+                }
+            })
+        }
+        const urls = []
+        for (let i = 0; i < 9; i++) {
+            urls.push(`https://jsonplaceholder.typicode.com/todos/${i}`)
+        }
+
+        concurrencyRequest(urls, 3).then(res => {
+            console.log(res, 'res')
+        })
+
+
+    </script>
+</body>
+
+</html>

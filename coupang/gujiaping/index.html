@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .wrap {
+        width: 800px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: #f0f0f0;
+        padding: 20px;
+    }
+
+    .wrap-header {
+        width: 80%;
+        height: 40px;
+        background-color: #e0e0e0;
+        margin-bottom: 20px;
+    }
+
+    .wrap-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 80%;
+    }
+
+    .small-image {
+        width: 50px;
+        height: 50px;
+        background-color: #fff;
+        border-radius: 5px;
+        animation: pulse 1.5s infinite ease-in-out
+    }
+
+    .wrap-image {
+        width: 200px;
+        height: 200px;
+        background-color: #fff;
+        border-radius: 5px;
+        animation: pulse 1.5s infinite ease-in-out
+    }
+
+    @keyframes pulse {
+        0% {
+            opacity: 0.5;
+        }
+
+        50% {
+            opacity: 0.7;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    .wrap-text {
+        flex: 1;
+        width: 50px;
+        height: 30px;
+        background-color: #d0d0d0;
+        margin: 10px;
+        animation: pulse 1.5s infinite ease-in-out
+    }
+</style>
+
+<body>
+
+    <div class="wrap">
+        <div class="wrap-header"></div>
+        <div class="wrap-content">
+            <div class="small-image"></div>
+            <div class="wrap-image"></div>
+            <div class="wrap-text"></div>
+            <div class="wrap-text"></div>
+            <div class="wrap-text"></div>
+            <div class="wrap-text"></div>
+            <div class="wrap-text"></div>
+            <div class="wrap-text"></div>
+            <div class="wrap-text"></div>
+        </div>
+    </div>
+
+    <script>
+        // 副作用
+        function fetchData() {
+            return new Promise((reslove) => {
+                setTimeout((resolve) => {
+                    reslove({
+                        ImageData: '图片',
+                        textContent: '商品'
+                    })
+                }, 1000)
+            })
+        }
+
+        // 显示
+        function showContent() {
+            document.querySelector('.wrap').style.display = 'block';
+        }
+        //隐藏
+        function hideContent(data) {
+            console.log(data.ImageData, 'dta')
+            const { ImageData, textContent } = data;
+            // document.querySelector('.wrap').style.display = 'none';
+            const ImageEle = document.querySelector('.wrap-image');
+            ImageEle.textContent = ImageData
+            const textEle = document.querySelectorAll('.wrap-text');
+            textEle.forEach((block) => {
+                textContent = `${textContent}`
+            })
+        };
+
+        //初始化加载
+        showContent()
+        getAction()
+        async function getAction() {
+            const asyncData = await fetchData();
+            return asyncData
+        }
+
+
+    </script>
+</body>
+
+</html>
